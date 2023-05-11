@@ -6,7 +6,6 @@ import { GalleryItem, GalleryImage } from './ImageGalleryItem.styled';
 class ImageGalleryItem extends Component {
   state = {
     showModal: false,
-    largeImageURL: this.props.largeImageURL,
   };
 
   toggleModal = () => {
@@ -16,8 +15,8 @@ class ImageGalleryItem extends Component {
   };
 
   render() {
-    const { largeImageURL, showModal } = this.state;
-    const { webformatURL, tags } = this.props;
+    const {  showModal } = this.state;
+    const { webformatURL, tags, largeImageURL } = this.props;
   
 
     return (
@@ -34,11 +33,9 @@ class ImageGalleryItem extends Component {
 }
 
 ImageGalleryItem.propTypes = {
-  image: PropTypes.shape({
-    webformatURL: PropTypes.string.isRequired,
-    largeImageURL: PropTypes.string.isRequired,
-    tags: PropTypes.string.isRequired,
-  }),
+  webformatURL: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
 };
 
 export default ImageGalleryItem;
