@@ -17,11 +17,17 @@ class App extends Component {
     images: [],
     totalImages: 0,
   };
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { searchImage, page } = this.state;
+  //   if (prevState.searchImage !== searchImage) {
+  //     this.setState({ images: [], page: 1 }, () => this.getImages());
+  //   } else if (prevState.page !== page) {
+  //     this.getImages();
+  //   }
+  // }
   componentDidUpdate(prevProps, prevState) {
     const { searchImage, page } = this.state;
-    if (prevState.searchImage !== searchImage) {
-      this.setState({ images: [], page: 1 }, () => this.getImages());
-    } else if (prevState.page !== page) {
+    if (prevState.searchImage !== searchImage || prevState.page !== page) {
       this.getImages();
     }
   }
@@ -72,6 +78,9 @@ class App extends Component {
       });
     }
   };
+  clearImages = () => {
+    this.setState({ images: [], page: 1 });
+  };
 
   formSubmit = searchImage => {
     this.setState({ searchImage });
@@ -87,7 +96,10 @@ class App extends Component {
     const { images, status, page, totalImages } = this.state;
     return (
       <StyledApp>
-        <Searchbar onSubmit={this.formSubmit} />
+        <Searchbar
+          onSubmit={this.formSubmit}
+          onClearImages={this.clearImages}
+        />
         {status === 'pending' && <Loader />}
         {(status === 'resolved' || (status === 'pending' && page !== 1)) && (
           <ImageGallery images={images} />

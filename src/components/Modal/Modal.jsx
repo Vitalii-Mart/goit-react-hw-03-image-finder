@@ -1,5 +1,5 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import {Overlay,ModalStyled, } from './Modal.styled';
 
@@ -42,4 +42,9 @@ class Modal extends Component {
 }
 export default Modal;
 
+Modal.propTypes = {
+  large: PropTypes.string,
+  tags: PropTypes.string,
+  onClose: PropTypes.func,
+};
 

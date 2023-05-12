@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
  import { toast } from 'react-toastify';
  import {
   SearchbarStyle,
@@ -25,6 +26,7 @@ class Searchbar extends Component {
     }
     this.props.onSubmit(this.state.searchImage);
     this.setState({ searchImage: '' });
+    this.props.onClearImages();
   };
 
   render() {
@@ -50,3 +52,8 @@ class Searchbar extends Component {
 }
 
 export default Searchbar;
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onClearImages: PropTypes.func.isRequired,
+};
